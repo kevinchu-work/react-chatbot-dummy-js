@@ -1,0 +1,22 @@
+@import '../../Library/SCSS/base';
+
+Header {
+    $BAR_HEIGHT: 44px;
+
+    @include dimen(100%, $BAR_HEIGHT);
+    border-bottom: 1px solid theme-color(grey08);
+    flex: 0 0 $BAR_HEIGHT;
+
+}
+
+.leftMenu {
+    @include fixed($top: 0, $bottom: 0, $left: 100%);
+    min-width: 10%;
+    max-width: 30%;
+}
+
+.rightMenu {
+    @include fixed($top: 0, $bottom: 0, $right: 100%);
+    min-width: 10%;
+    max-width: 30%;
+}

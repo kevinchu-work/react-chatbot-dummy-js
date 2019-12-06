@@ -1,0 +1,83 @@
+@mixin color-attrs($attrs) {
+  $valid-attrs: (background-color, border-color, color);
+
+  @if (type-of($attrs) == map) {
+    @each $attr in $valid-attrs {
+      @if (map-has-key($attrs, $attr)) {
+        #{$attr}: theme-color-opacity(map-get($attrs, $attr));
+      }
+    }
+  } @else if (type-of($attrs) == list) {
+    @if (length($attrs) > 0) {
+      background-color: theme-color-opacity(nth($attrs, 1));
+    }
+
+    @if (length($attrs) > 1) {
+      border-color: theme-color-opacity(nth($attrs, 2));
+    }
+
+    @if (length($attrs) > 2) {
+      color: theme-color-opacity(nth($attrs, 3));
+    }
+  } @else {
+    background-color: theme-color-opacity(nth($attrs, 1));
+  }
+}
+
+@mixin color-attr($attrs, $attr) {
+  $valid-attrs: (background-color, border-color, color);
+
+  @if (type-of($attrs) == map) {
+    @if (map-has-key($attrs, $attr)) {
+      #{$attr}: theme-color-opacity(map-get($attrs, $attr));
+    }
+  } @else if (type-of($attrs) == list) {
+    @if (length($attrs) > 0 and $attr == background-color) {
+      background-color: theme-color-opacity(nth($attrs, 1));
+    }
+
+    @if (length($attrs) > 1 and $attr == border-color) {
+      border-color: theme-color-opacity(nth($attrs, 2));
+    }
+
+    @if (length($attrs) > 2 and $attr == color) {
+      color: theme-color-opacity(nth($attrs, 3));
+    }
+  } @else if ($attr == background-color) {
+    background-color: theme-color-opacity(nth($attrs, 1));
+  }
+}
+
+@function theme-color($color-name) {
+  // @debug "#{$color-name} | #{type-of($value: $color-name)}";
+  @if (type-of($color-name) == color) {
+    @return $color-name;
+  }
+
+  $color-value: map-get($theme-colors, $color-name);
+
+  @if (not $color-value) {
+    @error 'Invalid color for name `#{$color-name}`';
+    @return null;
+  }
+
+  @if (type-of($color-value) == color) {
+    @return $color-value;
+  }
+
+  @error 'Invalid color name `#{$color-name}`';
+  @return null;
+}
+
+@function theme-color-opacity($color) {
+  @if (type-of($color) == list and length($color) > 1) {
+    @if (type_of(nth($color, 2)) == number) {
+      @return rgba(theme-color(nth($color, 1)), nth($color, 2));
+    }
+
+    @error 'Invalid opacity name `#{nth($color, 2)}`';
+    @return null;
+  }
+
+  @return theme-color($color);
+}

@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header           from './Components/Header/Header';
+import SubTitle         from './Components/SubTitle';
+import DialogWrapper    from './Components/Main/DialogWrapper';
+import AssistantBar     from './Components/AssistantBar';
+import InputBar         from './Components/InputBar';
+
+
+export default class App extends React.Component {
+
+  render() {
+    return 
+      <>
+        <Header id="header"></Header>
+        <SubTitle id="subtitle"></SubTitle>
+        <DialogWrapper id="root"></DialogWrapper>
+        <AssistantBar id="assistantBar"></AssistantBar>
+        <InputBar id="userTalk"></InputBar>
+      </>;
+  }
+
 }
-
-export default App;

@@ -1,0 +1,106 @@
+/*
+ * Backgound Function Collection
+ * Oct 19: Largely rewrite to be more flexible
+ *      - Before/After taking "Content" now
+ *      - Ignore the rest of parameters if neither Image nor color exist
+ *      - Able to handle Hover & Active BG 
+ */
+
+@mixin bg-reset() {
+  background: none !important;
+}
+
+@mixin bg-image(
+  $image: null,
+  $color: null,
+  $position: center center,
+  $size: 100%,
+  $repeat: no-repeat,
+  $clip: null,
+  $bg-attach: null
+) {
+  @if ($image) {
+    // and (type-of($image) == list) and (length($list: $image) >= 1) {
+
+    $imgL: append($image, null);
+    $imgCnt: length($imgL) - 1;
+
+    background-image: nth($imgL, 1);
+
+    @if ($imgCnt >= 2) {
+      &:hover {
+        background-image: nth($image, 2);
+      }
+    }
+    @if ($imgCnt >= 3) {
+      &:active {
+        background-image: nth($image, 3);
+      }
+    }
+  }
+  @if ($color) {
+    background-color: $color;
+  }
+
+  @if ($image != null or $color != null) {
+    @if ($position) {
+      background-position: $position;
+    }
+    @if ($size) {
+      background-size: $size;
+    }
+    @if ($repeat) {
+      background-repeat: $repeat;
+    }
+    @if ($clip) {
+      background-clip: $clip;
+    }
+    @if ($bg-attach) {
+      background-attachment: $bg-attach;
+    }
+  }
+}
+
+@mixin bg-image-only(
+  $type: null,
+  $image: null,
+  $content: null,
+  $position: null,
+  $size: null,
+  $repeat: null
+) {
+  &:#{$type} {
+    @include bg-image(
+      $image: $image,
+      $position: $position,
+      $size: $size,
+      $repeat: $repeat
+    );
+
+    @if ($content) {
+      content: $content;
+    }
+  }
+}
+
+@mixin bg-image-after(
+  $image: null,
+  $color: null,
+  $content: null,
+  $position: center center,
+  $size: 100%,
+  $repeat: no-repeat
+) {
+  @include bg-image-only(after, $image, $position, $size, $repeat);
+}
+
+@mixin bg-image-before(
+  $image: null,
+  $color: null,
+  $content: null,
+  $position: center center,
+  $size: 100%,
+  $repeat: no-repeat
+) {
+  @include bg-image-only(before, $image, $position, $size, $repeat);
+}

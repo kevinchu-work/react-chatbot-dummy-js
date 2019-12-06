@@ -1,0 +1,112 @@
+@function map-fetch($map, $keys...) {
+  $key: nth($keys, 1);
+  $length: length($keys);
+  $value: map-get($map, $key);
+
+  @if ($length == 1) {
+    @return $value;
+  }
+
+  $rest: ();
+
+  @for $i from 2 through $length {
+    $rest: append($rest, nth($keys, $i));
+  }
+
+  @return map-fetch($value, $rest...);
+}
+
+// Refer to: https://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#slicing-a-list#convert-a-list-into-a-string
+@function to-string($list, $glue: "", $is-nested: false) {
+  $result: null;
+
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+
+    @if type-of($e) == list {
+      $result: $result#{to-string($e, $glue, true)};
+    } @else {
+      $result: if(
+        $i != length($list) or $is-nested,
+        $result#{$e}#{$glue},
+        $result#{$e}
+      );
+    }
+  }
+
+  @return $result;
+}
+// @function list-to-string($list, $separator: ',') {
+//     $string : '';
+//     @if (type-of($list) != list) {
+//         @error 'Parameter Error: $list is not a list!';
+//     }
+//     @each $item in $list {
+//         @if (index($list, $item) == 1) {
+//             $string : nth($list, 1);
+//         } @else {
+//             $string : #{$string}#{$separator}#{$item};
+//         }
+//     }
+
+//     @return $string;
+// }
+
+// Refer to: https://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#slicing-a-list
+// @function slice($list, $start: 1, $end: length($list)) {
+//     $result: null;
+
+//     @if type-of($start) != number or type-of($end) != number {
+//         @warn "Either $start (#{$start}) or $end (#{$end}) are not a number for `slice`.";
+//     }
+
+//     @else if $start > $end {
+//         @warn "The start index (#{$start}) has to be lesser than or equals to the end index (#{$end}) for `slice`.";
+//     }
+
+//     @else if $start < 1 or $end < 1 {
+//         @warn "List indexes must be non-zero (#{$start}, #{$end}) integers for `slice`.";
+//     }
+
+//     @else if $start > length($list) {
+//         @warn "List index is #{$start} but list is only #{length($list)} item long for `slice`.";
+//     }
+
+//     @else if $end > length($list) {
+//         @warn "List index is #{$end} but list is only #{length($list)} item long for `slice`.";
+//     }
+
+//     @else {
+//         $result: ();
+
+//         @for $i from $start through $end {
+//             $result: append($result, nth($list, $i));
+//         }
+//     }
+
+//     @return $result;
+// }
+
+@function list-slice($list, $offset: 1, $length: null) {
+  $new-list: ();
+
+  @if ($offset < 0) {
+    $offset: length($list) + $offset + 1;
+  }
+
+  @if ($length) {
+    @if ($length < 0) {
+      $length: length($list) + $length - $offset + 1;
+    }
+  } @else {
+    $length: length($list);
+  }
+
+  @for $i from $offset to length($list) {
+    @if (length($new-list) < $length) {
+      $new-list: join($new-list, nth($list, $i), comma);
+    }
+  }
+
+  @return $new-list;
+}
