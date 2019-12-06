@@ -1,5 +1,18 @@
+# ChatBot UI Demo with interaction effect
+
+- Offline available, no server is required to run this demo
+- Accessibilities (WCAG 2.1 Level AA) fulfilled
+
+## 3rd Library
+
+- [node-sass] (https://github.com/sass/node-sass): Run-time support on SCSS styling.
+- [autoprefixer] (https://github.com/postcss/autoprefixer): Auto add vendor prefixes to CSS rules using values from Can I Use.
+- [helmet] (https://github.com/nfl/react-helmet): Manage changes to the document head.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+# Run the project
 ## Available Scripts
 
 In the project directory, you can run:
