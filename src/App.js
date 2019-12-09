@@ -18,11 +18,6 @@ export default class App extends React.Component {
     // User status
     is_typing: false,
     is_recording: false,  // Voice Record
-
-    // configration
-    interfaceLanguage: 'en',
-    is_demo: true
-
   }
 
   constructor(props) {
