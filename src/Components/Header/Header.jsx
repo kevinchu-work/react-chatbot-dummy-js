@@ -1,5 +1,6 @@
 import React from 'react';
-import { IconButton } from '../../Elements/Form/Buttons';
+import uuid from 'react-uuid';
+import { RetractableButton } from '../../Elements/Form/Buttons';
 
 import './Header.scss';
 
@@ -11,7 +12,7 @@ export default class Header extends React.Component {
     return (
       <>
         <div className="leftWrapper">
-          <IconButton predefinedbuttonyype="menu" />
+          <RetractableButton id={uuid()} classList={["menuBtn"]} content={<><span></span><span></span><span></span></>} />
         </div>
         <div className="centerWrapper"></div>
         <div className="rightWrapper"></div>

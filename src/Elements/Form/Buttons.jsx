@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { appendString } from  '../../Utils/utils';
+import './Buttons.scss';
 
 const StandardButton = (props) => {
     var { classlist, ...other } = props;
@@ -29,13 +30,27 @@ export class IconButton extends React.Component {
         return (
             <StandardButton classlist={[ classList ]} {...translatedProps} />
         );    
-    }
+    };
 }
-
-
 IconButton.defaultProps = {
     classList: [],
     predefinedbuttonyype: '',
 };
 
-// export default IconButton;
+export class RetractableButton extends React.Component {
+    render() {
+        return (
+        <>
+        <input id={this.props.id} type="checkbox" className="retractableBtn" />
+        <label htmlFor={this.props.id} className={`retractableBtn ${this.props.classList.join(' ').trim()}`}>
+            {this.props.content}
+        </label>
+        </>
+        );
+    };
+}
+RetractableButton.defaultProps = {
+    id: '',
+    classList: [],
+    content: '',
+}
