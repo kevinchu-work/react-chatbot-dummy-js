@@ -1,0 +1,152 @@
+@charset 'utf-8';
+// @use "sass:color";
+
+// Completely rewrite btn class
+$BUTTON_MIN_SIZE            : 20px  !default;
+$DEFAULT_BUTTON_SIZE        : 28px  !default;
+$WCAG_AAA_CLICKABLE_AREA    : 44px  !default;
+
+
+// Default style, no matter what state
+button,
+a.btn,
+input[type=button] {
+
+  &, &:hover, &:active, &:visited {
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+
+    // Default size, please customization in theme/page
+    @include dimen($DEFAULT_BUTTON_SIZE);
+  }
+
+  &.primaryBtn {
+    background-color: theme-color(btn-primary);
+    border-color: theme-color(btn-primary);
+    color: theme-color(btn-primary-text);
+  }
+
+  &.iconBtn {
+    $size: 36px;
+
+    border-color: theme-color(grey07);
+    @include dimen($size);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+
+  @if ($WCAG_AAA_CLICKABLE_AREA > $DEFAULT_BUTTON_SIZE) {
+    &.force_WCAG_AAA {
+      $lacking: (($WCAG_AAA_CLICKABLE_AREA - $DEFAULT_BUTTON_SIZE) / 2);
+      
+      padding: $lacking;
+      margin: -1 * $lacking;
+    }
+  }
+
+}
+
+.retractableBtn {
+
+  @at-root input[type=checkbox]#{&} {
+      position: absolute;
+      z-index: -9;
+  }
+  @at-root label#{&} {
+      @include flex($justify-content: space-between);
+  }
+
+}
+
+// Previous version, general button style based on _variables
+// .btn {
+//     $class-ns : #{$NS}-btn;
+
+//     padding: 5px 10px;
+//     min-height: 30px;
+//     min-width: 30px;
+
+//     @each $btn-name, $btn-attrs in $btn-types {
+
+//         @if ($btn-name == "default-style") {
+
+//             // Default Button Style
+//             @each $attr-name, $attr-val in $btn-attrs {
+//                 @if ($attr-name == "space-between") {
+//                     & + .btn {
+//                         margin-left: $attr-val; //map-get($btn-attrs, space-between);
+//                     }
+//                 } @else {
+//                     #{$attr-name}: #{$attr-val};
+//                 }
+//             }
+
+//         } @else {
+
+//             // Custom Button class
+//             &.#{$class-ns}-#{$btn-name} {
+
+//                 // Filling default style if missing
+//                 $refined-btn-attrs: $btn-attrs;
+//                 $default-bg-color: theme-color( nth( map-get($refined-btn-attrs, 'normal'), 1) );
+
+//                 @if (map-has-key($btn-attrs, "hover") == false) {
+//                     $hoverColor: lighten($default-bg-color, 5%);
+//                     $refined-btn-attrs: map-merge(  $refined-btn-attrs, 
+//                                                     (hover: ($hoverColor, $hoverColor)) );
+//                     // @debug $refined-btn-attrs;
+//                 }
+//                 @if (map-has-key($btn-attrs, "active") == false) {
+//                     $activeColor: darken($default-bg-color, 5%);
+//                     $refined-btn-attrs: map-merge(  $refined-btn-attrs, 
+//                                                     (active: ($activeColor, $activeColor)) );
+//                 }
+//                 // End: Filling default style if missing
+
+//                 // Produce actual style
+//                 @each $attr-name, $attr-val in $refined-btn-attrs {
+//                     @if ($attr-name == "typeface") {
+//                         @include typeface($attr-val);
+//                     } @else if ($attr-name == "normal") {
+//                         &:not(:disabled):not(.disabled) {
+//                             @include color-attrs($attr-val);
+//                         }
+//                     } @else if ($attr-name == "hover") {
+//                         &:hover {
+//                             &:not(:disabled):not(.disabled) {
+//                                 // @debug $attr-val;
+//                                 @include color-attrs($attr-val);
+//                             }
+//                         }
+//                     } @else if ($attr-name == "active") {
+//                         //&:focus,
+//                         &:active {
+//                             &:not(:disabled):not(.disabled) {
+//                                 // @debug $attr-val;
+//                                 @include color-attrs($attr-val);
+//                             }
+//                         }
+//                     // } @else {
+//                         // #{$attr-name}: #{$attr-val};
+//                     } @else if ($attr-name == "disabled") {
+//                         &:disabled,
+//                         &.disabled {
+//                             // @debug $attr-val;
+//                             @include color-attrs($attr-val);
+//                         }
+//                     }
+
+//                 } // End of Attributes loop
+//                 // End: Produce actual style
+
+//             }
+
+//         }
+
+//     }
+// }

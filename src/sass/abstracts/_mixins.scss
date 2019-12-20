@@ -1,0 +1,9 @@
+// @import 'mixins/*';     // Lazy
+
+@import 
+  './mixins/animate',
+  './mixins/background',
+  './mixins/color',
+  './mixins/font',
+  './mixins/layout',
+  './mixins/sizing';

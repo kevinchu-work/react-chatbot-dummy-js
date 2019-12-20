@@ -1,0 +1,703 @@
+@charset 'utf-8';
+
+// Very general breakpoint of wide/narrow
+$maxW: 900px;
+
+// Font sizes
+// $font-size-base: 16px;  // Common usage
+$BASE_FONT_SIZE: 10px;  // Benefit of 10px: prefect for rem
+$DEFAULT_PADDING_SIZE: 8px;
+
+// Icon sizes
+$icn-small: 20px;
+$icn-base: 30px;
+$icn-medium: 60px;
+
+// Paths
+$font-path: '/public/fonts' !default;
+$img-path:  '/public/imgs' !default;
+
+// Namespace
+$namespace: ideaSparks !default;    // Please change to client short name
+
+// Languages - https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers
+$languages: (
+    en: ('en'),
+    es: ('es'),
+    fr: ('fr'),
+    zh: ('zh-HK', 'zh-TW', 'zh-Hant', 'zh-CN', 'zh-Hans'),
+//     tc: ('zh-HK', 'zh-TW', 'zh-Hant'),
+//     sc: ('zh-CN', 'zh-Hans')
+) !default;
+$default-lang: en !default;
+
+// Site or theme Colors, https://color.adobe.com/explore
+$theme-colors: (
+        // Refer: https://coolors.co/011627-fdfffc-2ec4b6-e71d36-ff9f1c
+        masstricht-blue:       rgba(1, 22, 39, 1),
+        baby-powder:           rgba(253, 255, 252, 1),
+        maximum-blue-green:    rgba(46, 196, 182, 1),
+        rose-madder:           rgba(231, 29, 54, 1),
+        crayola:               rgba(255, 159, 28, 1),
+
+        // Button Color
+        // Refer: https://encycolorpedia.com/24a0ed
+        btn-microsoft-blue      : #00a2ed,
+        btn-disabled            : #6e6e6e,
+        btn-alert               : #f00,
+        btn-primary             : #00a2ed,
+        btn-primary-text        : #fff,
+
+        idea-green              : #73be44,
+        sparks-blue             : #0f64b9,
+        
+        sparks-link             : #0645AD,
+        sparks-link-hover       : #3366BB,
+        sparks-link-active      : #0B0080,
+        // sparks-link-visited     : #663366,
+
+        default-font-color      : #333,
+
+        // Refer: https://www.quackit.com/html/codes/color/color_names.cfm
+        black          : #000000,
+        disabled       : #757575,
+        grey01         : #333333,
+        grey02         : #666666,
+        grey03         : #808080,
+        grey04         : #999999,
+        grey05         : #b2b2b2,
+        grey06         : #d9d9d9,
+        grey07         : #ededed,
+        grey08         : #f2f2f2,
+        grey09         : #f7f7f7,
+        grey10         : #fafafa,
+        grey11         : #6e6e6e,
+        white          : #ffffff,
+        divider        : #e5e5e5,
+        red            : #ff0000,
+        red01          : #cc0000,
+        red02          : #e50000,
+        red03          : #ff3333,
+        red04          : #ff6666,
+        dark-green     : #0d6c29,
+        dark-green01   : #298236,
+        green          : #34a344,
+        green01        : #5cb569,
+        green02        : #85c78e,
+        digital-green  : #00a865,
+        green-banking01: #00954b,
+        green-banking02: #a6ce39,
+        mpf01          : #f26522,
+        mpf02          : #faa74a,
+        integrated01   : #9a2015,
+        integrated02   : #c74e24,
+        preferred01    : #5b605f,
+        preferred02    : #7f807d,
+        preferred03    : #cfcdc5,
+        prestige01     : #6c4107,
+        prestige02     : #94532c,
+        prestige03     : #d8b18d,
+        light-pink     : #fffafa,
+        light-green    : #a6ce39,
+        brown          : #c86428,
+        camel          : #d2a97f,
+        silver         : #cfcdc5,
+        sky            : #85cad4,
+        cerulean       : #3194aa,
+        pewter         : #7f807d,
+        amber01        : #edc218,
+        amber02        : #f1d04c,
+        mint           : #f4faf5,
+        sage           : #4d7874
+) !default;
+
+// Typefaces
+$fonts: (
+        base: ('Helvetica Neue', 'Helvetica', 'Arial', sans-serif),
+        en: (
+                base            : ('Roboto'),
+                Merriweather    : ('Merriweather')
+        ),
+        es: (
+                base            : ('Roboto'),
+                Merriweather    : ('Merriweather')
+        ),
+        fr: (
+                base            : ('Roboto'),
+                Merriweather    : ('Merriweather')
+        ),
+        zh: (
+                base            : ('Microsoft JhengHei', '微軟正黑體'),
+                sc              : ('Noto Sans SC'),
+                tc              : ('Noto Sans TC')
+        )
+) !default;
+
+$typefaces: (
+        h1: (
+                en: (
+                        sm: (2.4rem 1.5),
+                        md: (2.4rem 1.5),
+                        lg: (2.4rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (2.4rem 1.5),
+                        md: (2.4rem 1.5),
+                        lg: (2.4rem 1.5)
+                )
+        ),
+        h2: (
+                en: (
+                        sm: (2.2rem 1.5),
+                        md: (2.2rem 1.5),
+                        lg: (2.2rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (2.2rem 1.5),
+                        md: (2.2rem 1.5),
+                        lg: (2.2rem 1.5)
+                )
+        ),
+        h3: (
+                en: (
+                        sm: (2rem 1.5),
+                        md: (2rem 1.5),
+                        lg: (2rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (2rem 1.5),
+                        md: (2rem 1.5),
+                        lg: (2rem 1.5)
+                )
+        ),
+        h4: (
+                en: (
+                        weight: 500,
+                        sm: (2rem 1.5),
+                        md: (2rem 1.5),
+                        lg: (2rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (2rem 1.5),
+                        md: (2rem 1.5),
+                        lg: (2rem 1.5)
+                )
+        ),
+        h5: (
+                en: (
+                        sm: (1.8rem 1.55),
+                        md: (1.8rem 1.5),
+                        lg: (1.8rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (1.8rem 1.5),
+                        md: (1.8rem 1.5),
+                        lg: (1.8rem 1.5)
+                )
+        ),
+        h6: (
+                en: (
+                        weight: 500,
+                        sm: (1.8rem 1.5),
+                        md: (1.8rem 1.5),
+                        lg: (1.8rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (1.8rem 1.5),
+                        md: (1.8rem 1.5),
+                        lg: (1.8rem 1.5)
+                )
+        ),
+        section-title1: (
+                en: (
+                        weight: 500,
+                        sm: (1.7rem 1.5),
+                        md: (1.7rem 1.5),
+                        lg: (1.7rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (1.7rem 1.5),
+                        md: (1.7rem 1.5),
+                        lg: (1.7rem 1.5)
+                )
+        ),
+        body1: (
+                en: (
+                        face: opensans,
+                        sm: (1.6rem 1.5),
+                        md: (1.6rem 1.5),
+                        lg: (1.6rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (1.6rem 1.5),
+                        md: (1.6rem 1.5),
+                        lg: (1.6rem 1.5)
+                )
+        ),
+        body2: (
+                en: (
+                        face: opensans,
+                        weight: 600,
+                        sm: (1.6rem 1.5),
+                        md: (1.6rem 1.5),
+                        lg: (1.6rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (1.6rem 1.5),
+                        md: (1.6rem 1.5),
+                        lg: (1.6rem 1.5)
+                )
+        ),
+        body3: (
+                en: (
+                        face: opensans,
+                        sm: (1.4rem 1.5),
+                        md: (1.4rem 1.5),
+                        lg: (1.4rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (1.4rem 1.5),
+                        md: (1.4rem 1.5),
+                        lg: (1.4rem 1.5)
+                )
+        ),
+        body4: (
+                en: (
+                        face: opensans,
+                        weight: 600,
+                        sm: (1.4rem 1.5),
+                        md: (1.4rem 1.5),
+                        lg: (1.4rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (1.4rem 1.5),
+                        md: (1.4rem 1.5),
+                        lg: (1.4rem 1.5)
+                )
+        ),
+        body5: (
+                en: (
+                        face: opensans,
+                        sm: (1.2rem 1.5),
+                        md: (1.2rem 1.5),
+                        lg: (1.2rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (1.2rem 1.5),
+                        md: (1.2rem 1.5),
+                        lg: (1.2rem 1.5)
+                )
+        ),
+        body6: (
+                en: (
+                        face: opensans,
+                        weight: 600,
+                        sm: (1rem 1.5),
+                        md: (1rem 1.5),
+                        lg: (1rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (1rem 1.5),
+                        md: (1rem 1.5),
+                        lg: (1rem 1.5)
+                )
+        ),
+        body7: (
+                en: (
+                        face: opensans,
+                        weight: 600,
+                        sm: (0.875rem 1.5),
+                        md: (0.875rem 1.5),
+                        lg: (0.875rem 1.5),
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (0.875rem 1.5),
+                        md: (0.875rem 1.5),
+                        lg: (0.875rem 1.5),
+                )
+        ),
+        body8: (
+                en: (
+                        face: opensans,
+                        weight: 600,
+                        sm: (0.75rem 1.5),
+                        md: (0.75rem 1.5),
+                        lg: (0.75rem 1.5),
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        face: opensans,
+                        weight: 700,
+                        sm: (0.75rem 1.5),
+                        md: (0.75rem 1.5),
+                        lg: (0.75rem 1.5),
+               )
+        ),
+        body9: (
+                en: (
+                        face: opensans,
+                        sm: (0.625rem 1.5),
+                        md: (0.625rem 1.5),
+                        lg: (0.625rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh:(
+                        face: opensens,
+                        sm: (0.625rem 1.5),
+                        md: (0.625rem 1.5),
+                        lg: (0.625rem 1.5),
+                )
+        ),
+        body10: (
+                en: (
+                        face: opensens,
+                        weight: 600,
+                        sm: (0.625rem 1.5),
+                        md: (0.625rem 1.5),
+                        lg: (0.625rem 1.5)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh:(
+                        face: opensens,
+                        weight: 700,
+                        sm: (0.625rem 1.5),
+                        md: (0.625rem 1.5),
+                        lg: (0.625rem 1.5),
+                )
+        ),
+        remark1: (
+                en: (
+                        face: opensans,
+                        sm: (0.75rem 1.67),
+                        md: (0.75rem 1.67),
+                        lg: (0.75rem 1.67)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (0.75rem 1.67),
+                        md: (0.75rem 1.67),
+                        lg: (0.75rem 1.67)
+                )
+        ),
+        remark2: (
+                en: (
+                        face: opensans,
+                        weight: 600,
+                        sm: (0.75rem 1.67),
+                        md: (0.75rem 1.67),
+                        lg: (0.75rem 1.67)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (0.75rem 1.67),
+                        md: (0.75rem 1.67),
+                        lg: (0.75rem 1.67)
+                )
+        ),
+        thead1: (
+                en: (
+                        face: opensans,
+                        weight: 600,
+                        sm: (0.75rem 1.34),
+                        md: (0.75rem 1.34),
+                        lg: (0.75rem 1.34)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (0.75rem 1.34),
+                        md: (0.75rem 1.34),
+                        lg: (0.75rem 1.34)
+                )
+        ),
+        thead2: (
+                en: (
+                        face: opensans,
+                        sm: (0.75rem 1.34),
+                        md: (0.75rem 1.34),
+                        lg: (0.75rem 1.34)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (0.75rem 1.34),
+                        md: (0.75rem 1.34),
+                        lg: (0.75rem 1.34)
+                )
+        ),
+        tcell: (
+                en: (
+                        face: opensans,
+                        sm: (0.875rem 1.43),
+                        md: (0.875rem 1.43),
+                        lg: (0.875rem 1.43)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (0.875rem 1.43),
+                        md: (0.875rem 1.43),
+                        lg: (0.875rem 1.43)
+                )
+        ),
+        btn1: (
+                en: (
+                        sm: (1.125rem 1.12),
+                        md: (1.125rem 1.12),
+                        lg: (1.125rem 1.12)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (1.125rem 1.12),
+                        md: (1.125rem 1.12),
+                        lg: (1.125rem 1.12)
+                )
+        ),
+        btn2: (
+                en: (
+                        face: opensans,
+                        weight: 600,
+                        sm: (0.875rem 1.29),
+                        md: (0.875rem 1.29),
+                        lg: (0.875rem 1.29)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        weight: 700,
+                        sm: (0.875rem 1.29),
+                        md: (0.875rem 1.29),
+                        lg: (0.875rem 1.29)
+                )
+        ),
+        menu: (
+                en: (
+                        sm: (0.8125rem 1.38),
+                        md: (0.8125rem 1.38),
+                        lg: (0.8125rem 1.38)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (0.8125rem 1.38),
+                        md: (0.8125rem 1.38),
+                        lg: (0.8125rem 1.38)
+                )
+        ),
+        sup1: (
+                en: (
+                        face: opensans,
+                        sm: (0.625rem 2),
+                        md: (0.625rem 2),
+                        lg: (0.625rem 2)
+                ),
+                es: (
+                ),
+                fr: (
+                ),
+                zh: (
+                        sm: (0.625rem 2),
+                        md: (0.625rem 2),
+                        lg: (0.625rem 2)
+                )
+        )
+) !default;
+
+$btn-types : (
+        default-style: (
+            border-radius: 4px,
+            padding: 10px 50px,
+            border-width: 1px,
+            border-style: solid,
+            space-between: 10px,
+
+        ),
+
+        // color-attrs: background-colot, border-color, color
+        // hover & active: optional, by default, lighten & darken by 5%
+        primary: (
+                typeface: btn1,
+                normal: (sparks-blue, sparks-blue, white),
+                // hover: (green01, green01), // Optional, default 5% lighten
+                // active: (dark-green, dark-green), // Optional, default 5% darken
+                disabled: (disabled, disabled)
+        ),
+        secondary: (
+                typeface: btn1,
+                normal: ( rgba(white, 0.6), grey05, grey02),
+                hover: grey05,
+                active: grey07,
+                disabled: (disabled, disabled, grey08)
+        ),
+        ghost: (
+                typeface: btn1,
+                normal: (white, grey05, grey02),
+                hover: grey09,
+                active: grey07,
+                disabled: (grey06, grey06, grey04)
+        )
+) !default;
+
+
+$typefaces-bottom: (
+        h1: (
+                sm: 24px,
+                md: 0,
+                lg: 40px,
+        ),
+        h2: (
+                sm: 16px,
+                md: 0,
+                lg: 40px,
+        ),
+        h3: (
+                sm: 16px,
+                md: 0,
+                lg: 30px,
+        ),
+        h4: (
+                sm: 16px,
+                md: 0,
+                lg: 20px,
+        ),
+        h5: (
+                sm: 16px,
+                md: 0,
+                lg: 20px,
+        ),
+        h6: (
+                sm: 8px,
+                md: 0,
+                lg: 5px,
+        ),
+        h7: (
+                sm: 8px,
+                md: 0,
+                lg: 5px,
+        ),
+        section-title1: (
+                sm: 0,
+                md: 0,
+                lg: 20px,
+        ),
+        section-title2: (
+                sm: 0,
+                md: 0,
+                lg: 20px,
+        ),
+        body1: (
+                sm: 0,
+                md: 0,
+                lg: 10px,
+        ),
+        body2: (
+                sm: 0,
+                md: 0,
+                lg: 10px,
+        ),
+        remark1: (
+                sm: 8px,
+                md: 0,
+                lg: 10px,
+        ),
+        remark2: (
+                sm: 8px,
+                md: 0,
+                lg: 10px,
+        ),
+) !default;
+
+// @import 'images';

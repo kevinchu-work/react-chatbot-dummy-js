@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+/* Positioning & Sizing Function Collection
+ * 
+ * Oct 19: Enhanced dimen, if only one parameter, make it square size
+ */
+@charset 'utf-8';
+
+@mixin position($top: null, $bottom: null, $left: null, $right: null, $position: absolute) {
+    position : $position;
+
+    @if ($top)      { top       : $top; }
+    @if ($bottom)   { bottom    : $bottom; }
+    @if ($left)     { left      : $left; }
+    @if ($right)    { right     : $right; }
+}
+
+@mixin fixed($top: null, $bottom: null, $left: null, $right: null) {
+  @include position($top, $bottom, $left, $right, fixed);
+}
+
+@mixin dimen($width, $height: $width) {
+  width  : $width; 
+  height : $height;
+}
+
+@mixin margin-x($left: 0, $right: $left) {
+  margin-left  : $left;
+  margin-right : $right;
+}
+
+@mixin margin-y($top: 0, $down: $top) {
+  margin-top    : $top;
+  margin-bottom : $down;
+}
+
+@mixin padding-x($left: 0, $right: $left) {
+  padding-left  : $left;
+  padding-right : $right;
+}
+
+@mixin padding-y($left: 0, $right: $left) {
+  padding-top    : $left;
+  padding-bottom : $right;
+}

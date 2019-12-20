@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { appendString } from  '../../Utils/utils';
-import './Buttons.scss';
+// import './Buttons.scss';
 
 const StandardButton = (props) => {
     var { classlist, ...other } = props;

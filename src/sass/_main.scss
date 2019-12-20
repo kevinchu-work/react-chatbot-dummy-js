@@ -1,0 +1,37 @@
+// File structure based on 7-1 Pattern but 
+// - breakdown mixins & functions
+// - swap order between components & layout
+
+// @import 'abstracts/*';
+@import 
+  './abstracts/variables',
+  './abstracts/functions',
+  './abstracts/mixins',
+  './abstracts/placeholders'
+  ;
+
+// @import 'vendors/*';
+
+// @import 'base/*';
+@import 
+  './base/reset',
+  './base/fontface',
+  './base/typography'
+  ;
+
+// @import 'components/*';
+@import 
+  './components/button',
+  './components/carousel',
+  './components/dropdown'
+  ;
+  
+// @import 'layout/*';
+@import 
+  './layout/navigation'
+  ;
+
+// @import 'pages/*';
+// @import 'themes/*';
+
+@import 'shame';

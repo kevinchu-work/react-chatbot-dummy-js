@@ -1,16 +1,4 @@
-// Refer to: https://github.com/daneden/animate.css
-// License: MIT, Copy and Modify allowed
-
-
-// Speed control
-$ANIMATION_SPEED: (
-  fast    : 300ms,
-  default : 500ms,
-  slow    : 1s
-) !default;
-$defaultDuration: map-get($map: $ANIMATION_SPEED, $key: default) !default;
-$defaultTiming: ease !default;
-
+@charset 'utf-8';
 
 // ~ Common Functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @mixin transition($property: all, $duration: $defaultDuration, $timing: $defaultTiming, $delay: 0) {
@@ -31,4 +19,3 @@ $defaultTiming: ease !default;
     will-change               : $property;
   }
 }
-

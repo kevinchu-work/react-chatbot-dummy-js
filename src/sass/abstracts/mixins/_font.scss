@@ -1,0 +1,124 @@
+@mixin lang($langCodes: ($DEFAULT_LANGUAGE)) {
+  // @function lang($langCodes: ($DEFAULT_LANGUAGE)) {
+      @if (type-of($langCodes) != list) {
+          $langCodes : append((), $langCodes);
+      }
+  
+      @each $langCode in $langCodes {
+          @if (not map-has-key($LANGUAGES, $langCode)) {
+              $langCode : en;
+          }
+  
+          @if ($langCode == $DEFAULT_LANGUAGE) {
+              @content;
+          } @else {
+              $langValues : map-get($LANGUAGES, $langCode);
+  
+              @each $langValue in $langValues {
+                  &:lang(#{$langValue}) {
+                      @content;
+                  }
+              }
+          }
+      }
+  }
+  
+  
+  @mixin font-attrs($attrs) {
+      $valid-attrs : (font-size, font-weight, line-height);
+  
+      @if (type-of($attrs) == map) {
+          @each $attr in $valid-attrs {
+              @if (map-has-key($attrs, $attr)) {
+                  #{$attr}: map-get($attrs, $attr);
+              }
+          }
+      } @else if (type-of($attrs) == list) {
+          @if (length($attrs) > 0) {
+              font-size : nth($attrs, 1);
+          }
+  
+          @if (length($attrs) > 1) {
+              line-height : nth($attrs, 2);
+          }
+  
+          @if (length($attrs) > 2) {
+              font-weight : nth($attrs, 3);
+          }
+      } @else {
+          font-size : $attrs;
+      }
+  }
+  
+  @mixin font-face($lang: $DEFAULT_LANGUAGE, $variant: null) {
+      @if (not map-has-key($LANGUAGES, $lang)) {
+          @error 'Language is not defined [#{$lang}]';
+      }
+  
+      $font-lang : $lang;
+      @if (($lang == tc) or ($lang == sc)) {
+          $font-lang : zh;
+          $variant : $lang;
+      }
+  
+      $base-face-family : map-get($FONTS_FAMILY, base);
+      $lang-face-family : map-get($FONTS_FAMILY, $font-lang);
+      $face-family : map-get($lang-face-family, base);
+      $variant-face-family : map-get($lang-face-family, $variant);
+  
+      @if ($lang == en) {
+          @if ($variant) {
+              $face-family : $variant-face-family;
+          }
+  
+          $face-family : join($face-family, $base-face-family);
+      } @else {
+          $face-family : join($variant-face-family, $face-family);
+  
+          $face-family: join($face-family, list-slice($base-face-family, -1));
+          $face-family: join($face-family, list-slice($base-face-family, 1, -1));
+      }
+  
+      font-family : $face-family;
+  }
+  
+  @mixin typeface($name, $breakpoint: lg, $fontColor: default-font-color) {
+  
+      color: theme-color($fontColor);
+  
+      @each $lang in map-keys($LANGUAGES) {
+          $fontLang : $lang;
+  
+          @if ($fontLang == tc) or ($fontLang == sc) {
+              $fontLang : zh;
+          }
+  
+          @include lang($lang) {
+  
+              // @debug "#{$lang} | #{$fontLang}";
+  
+              $typeface : map-fetch($typefaces, $name, $fontLang);
+  
+              // Font Weight
+              $font-weight : map-get($typeface, weight);
+              @if (not $font-weight) {
+                  $font-weight : 400;
+              }
+              font-weight : $font-weight;
+  
+              // Font Face
+              $font-face : map-get($typeface, face);
+              @if ($font-face and map-has-key(map-get($FONTS_FAMILY, $fontLang), $font-face)) {
+                  @include font-face($lang, $font-face);
+              } @else {
+                  @include font-face($lang);
+              }
+  
+              // Font Size
+              $font-attrs : map-get($typeface, $breakpoint);
+              @if ($font-attrs) {
+                  @include font-attrs($font-attrs);
+              }
+          }
+      }
+  }

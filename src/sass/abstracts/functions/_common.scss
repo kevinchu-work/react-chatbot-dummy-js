@@ -1,3 +1,5 @@
+@charset 'utf-8';
+
 @function map-fetch($map, $keys...) {
   $key: nth($keys, 1);
   $length: length($keys);
@@ -15,6 +17,7 @@
 
   @return map-fetch($value, $rest...);
 }
+
 
 // Refer to: https://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#slicing-a-list#convert-a-list-into-a-string
 @function to-string($list, $glue: "", $is-nested: false) {
@@ -36,6 +39,8 @@
 
   @return $result;
 }
+
+
 // @function list-to-string($list, $separator: ',') {
 //     $string : '';
 //     @if (type-of($list) != list) {
@@ -51,6 +56,7 @@
 
 //     @return $string;
 // }
+
 
 // Refer to: https://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#slicing-a-list
 // @function slice($list, $start: 1, $end: length($list)) {

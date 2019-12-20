@@ -1,4 +1,7 @@
+@charset 'utf-8';
+
 @mixin color-attrs($attrs) {
+
   $valid-attrs: (background-color, border-color, color);
 
   @if (type-of($attrs) == map) {
@@ -22,9 +25,11 @@
   } @else {
     background-color: theme-color-opacity(nth($attrs, 1));
   }
+
 }
 
 @mixin color-attr($attrs, $attr) {
+
   $valid-attrs: (background-color, border-color, color);
 
   @if (type-of($attrs) == map) {
@@ -46,15 +51,17 @@
   } @else if ($attr == background-color) {
     background-color: theme-color-opacity(nth($attrs, 1));
   }
+
 }
 
 @function theme-color($color-name) {
+
   // @debug "#{$color-name} | #{type-of($value: $color-name)}";
   @if (type-of($color-name) == color) {
     @return $color-name;
   }
 
-  $color-value: map-get($theme-colors, $color-name);
+  $color-value: map-get($COLOR_SET, $color-name);
 
   @if (not $color-value) {
     @error 'Invalid color for name `#{$color-name}`';
@@ -67,9 +74,11 @@
 
   @error 'Invalid color name `#{$color-name}`';
   @return null;
+
 }
 
 @function theme-color-opacity($color) {
+
   @if (type-of($color) == list and length($color) > 1) {
     @if (type_of(nth($color, 2)) == number) {
       @return rgba(theme-color(nth($color, 1)), nth($color, 2));
@@ -80,4 +89,5 @@
   }
 
   @return theme-color($color);
+  
 }
