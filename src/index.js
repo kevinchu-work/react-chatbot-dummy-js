@@ -8,7 +8,7 @@ import App              from './App';
 // import AssistantBar     from './Components/AssistantBar';
 // import InputBar         from './Components/InputBar';
 
-import './index.scss';
+import './sass/pages/index.scss';
 
 import * as serviceWorker from './serviceWorker';
 

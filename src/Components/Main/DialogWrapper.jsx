@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './DialogWrapper.scss';
+import '../../sass/layout/_dialogWrapper.scss';
 
 export default class DialogWrapper extends React.Component {
 

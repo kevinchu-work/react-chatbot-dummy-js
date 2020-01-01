@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-
+@import '../main';
 
 .retractableBtn {
 
@@ -21,10 +21,10 @@
 }
 
 
-label.menuBtn {
+label.retractableBtn.menuBtn {
 
-  $TOGGLE_BUTTON_HEIGHT: $DEFAULT_BUTTON_SIZE;
-  $TOGGLE_BUTTON_WIDTH: ($TOGGLE_BUTTON_WIDTH - 4px);
+  $TOGGLE_BUTTON_HEIGHT: ($DEFAULT_BUTTON_SIZE - 4px);
+  $TOGGLE_BUTTON_WIDTH: $DEFAULT_BUTTON_SIZE;
 
   
   flex-direction: column;

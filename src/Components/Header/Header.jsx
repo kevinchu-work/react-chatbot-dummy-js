@@ -2,6 +2,8 @@ import React from 'react';
 import uuid from 'react-uuid';
 import { RetractableButton } from '../../Elements/Form/Buttons';
 
+import '../../sass/layout/_header.scss';
+import '../../sass/layout/_navigation.scss';
 
 export default class Header extends React.Component {
 
