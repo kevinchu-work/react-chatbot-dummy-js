@@ -4,53 +4,55 @@ import { appendString } from  '../../Utils/utils';
 // import './Buttons.scss';
 
 const StandardButton = (props) => {
-    var { classlist, ...other } = props;
+  var { classList, ...other } = props;
 
-    return (
-        <button className={classlist.join(' ').trim()} {...other}></button>
-    );
+  return (
+    <button className={classList.join(' ').trim()} {...other}></button>
+  );
 }
 
 
 // export const IconButton = (props) => {
 export class IconButton extends React.Component {
-    render() {
-        var { classList, ...translatedProps } = this.props;
+  render() {
+    var { classList, ...translatedProps } = this.props;
 
-        if ( typeof this.props.predefinedbuttonyype !== 'undefined' ) {
+    if ( typeof this.props.predefinedButtonType !== 'undefined' ) {
 
-            // eslint-disable-next-line
-            var { predefinedbuttonyype, ...translatedProps } = translatedProps;
-    
-            if (predefinedbuttonyype === 'menu') {
-                classList = appendString('iconBtn', classList);
-            }
-        }
-    
-        return (
-            <StandardButton classlist={[ classList ]} {...translatedProps} />
-        );    
-    };
+      // eslint-disable-next-line
+      var { predefinedButtonType, ...translatedProps } = translatedProps;
+
+      if (predefinedButtonType === 'menu') {
+        classList = appendString('iconBtn', classList);
+      }
+    }
+
+    return (
+      <StandardButton classList={[ classList ]} {...translatedProps} />
+    );
+  };
 }
 IconButton.defaultProps = {
-    classList: [],
-    predefinedbuttonyype: '',
+  classList: [],
+  predefinedButtonType: '',
 };
 
 export class RetractableButton extends React.Component {
-    render() {
-        return (
-        <>
-        <input id={this.props.id} type="checkbox" className="retractableBtn" />
-        <label htmlFor={this.props.id} className={`retractableBtn ${this.props.classList.join(' ').trim()}`}>
-            {this.props.content}
-        </label>
-        </>
-        );
-    };
+
+  render() {
+    return (
+      <>
+      <input id={this.props.id} type="checkbox" className="retractableBtn" onChange={this.props.onClickEvent} />
+      <label htmlFor={this.props.id} className={`retractableBtn ${this.props.classList.join(' ').trim()}`}>
+        {this.props.content}
+      </label>
+      </>
+    );
+  };
+
 }
 RetractableButton.defaultProps = {
-    id: '',
-    classList: [],
-    content: '',
+  id: '',
+  classList: [],
+  content: '',
 }

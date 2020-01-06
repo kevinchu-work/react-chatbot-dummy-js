@@ -12,7 +12,7 @@
   @at-root input[type=checkbox]#{&}:checked +
   label#{&} {
       span {
-          width: 24.5px;
+          width: 30.8px; //24.5px;
           &:first-child { transform: rotate(45deg) ; }
           &:nth-child(2){ opacity: 0; }
           &:last-child  { transform: rotate(-45deg); }
@@ -45,4 +45,19 @@ label.retractableBtn.menuBtn {
     &:first-child { transform-origin: 2.5px 6px; }
     &:last-child  { transform-origin: 2.5px -1px; }
   }
+}
+
+
+Header .leftMenu {
+
+  width: 350px;
+  border-right: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: 2px 0 4px rgba(0,0,0, 0.2);
+  transition: left ease 1s;
+
+  &.active {
+    left: 0;
+  }
+
 }
