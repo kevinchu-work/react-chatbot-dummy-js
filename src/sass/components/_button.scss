@@ -32,12 +32,21 @@ input[type=button] {
   &.iconBtn {
     $size: 36px;
 
-    border-color: theme-color(grey07);
     @include dimen($size);
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: transparent;
+
+    &.exitBtn {
+      background-image: url(../../images/icons/exit_to_app.svg);
+      background-size: 24px;
+    }
+
+    &.settingBtn {
+      background-image: url(../../images/icons/bytesize-settings.svg);
+      background-size: 24px;
+    }
   }
 
   @if ($WCAG_AAA_CLICKABLE_AREA > $DEFAULT_BUTTON_SIZE) {

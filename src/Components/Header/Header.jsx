@@ -1,40 +1,68 @@
 import React from 'react';
 import uuid from 'react-uuid';
-import { RetractableButton } from '../../Elements/Form/Buttons';
+import { RetractableButton, IconButton } from '../../Elements/Form/Buttons';
 
 import '../../sass/layout/_header.scss';
 import '../../sass/layout/_navigation.scss';
 
+
+function SideMenuFC(props) {
+
+  return (
+    <div className={props.classes}>
+      <div className="headRow">
+        <IconButton predefinedButtonType="Exit" onClickEvent={props.onClickEvent}></IconButton>
+      </div>
+      <div className="footRow">
+        
+      </div>
+    </div>
+  );
+}
+
+
 export default class Header extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = { mobileMenuFlag: false };
-
-    this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
-  }
+  state = { 
+    mobileMenu_left_Flag: false,
+    mobileMenu_right_Flag: false
+  };
 
   toggleMobileMenu = (e) => {
-    console.log("toggle mobile menu: " + new Date() );
-    this.setState({
-      mobileMenuFlag: !this.state.mobileMenuFlag
-    });
+    if (e === 'left') {
+      this.setState({
+        mobileMenu_left_Flag: !this.state.mobileMenu_left_Flag
+      });
+    } else if (e === 'right') {
+      this.setState({
+        mobileMenu_right_Flag: !this.state.mobileMenu_right_Flag
+      });
+    }
   };
 
   render() {
     return (
       <>
         <div className="leftWrapper">
-          <RetractableButton id={uuid()} classList={["menuBtn"]} 
-            content={<><span></span><span></span><span></span></>}
-            onClickEvent={this.toggleMobileMenu} />
+          <RetractableButton id={uuid()} 
+                      classList={["menuBtn"]} 
+            predefinedButtonType="Menu"
+                    onClickEvent={() => this.toggleMobileMenu('left')}
+                    buttonChecked={this.state.mobileMenu_left_Flag} />
         </div>
         <div className="centerWrapper"></div>
-        <div className="rightWrapper"></div>
+        <div className="rightWrapper">
+          <IconButton predefinedButtonType="Setting"
+                              onClickEvent={() => this.toggleMobileMenu('right')} />
+        </div>
 
-        <div className={"leftMenu" + (this.state.mobileMenuFlag ? ' active' : '')} ></div>
-        <div className="rightMenu"></div>
+        <SideMenuFC 
+            classes={"leftMenu" + (this.state.mobileMenu_left_Flag ? ' active' : '')} 
+            onClickEvent={() => this.toggleMobileMenu('left')} />
+        <SideMenuFC
+            classes={"rightMenu" + (this.state.mobileMenu_right_Flag ? ' active' : '')}
+            onClickEvent={() => this.toggleMobileMenu('right')} />
+        {/* <div className="rightMenu"></div> */}
       </>
     );
   }

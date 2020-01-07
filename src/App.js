@@ -43,7 +43,7 @@ export default class App extends React.Component {
           <SubTitle id="subtitle" is_userLogined={is_userLogined_var}></SubTitle>
         </header>
         <main>
-          <DialogWrapper id="root"></DialogWrapper>
+          <DialogWrapper></DialogWrapper>
           <AssistantBar id="assistantBar"></AssistantBar>
           <InputBar id="userTalk"></InputBar>
         </main>

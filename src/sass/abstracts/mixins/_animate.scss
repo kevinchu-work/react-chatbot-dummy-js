@@ -1,8 +1,15 @@
 @charset 'utf-8';
 
+// TODO: configuration move to _variables.scss
+$defaultDuration: 500ms;
+$defaultTiming: ease;
+
 // ~ Common Functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @mixin transition($property: all, $duration: $defaultDuration, $timing: $defaultTiming, $delay: 0) {
-  transition: $property $duration $timing $delay;
+  transition: $property $timing $duration;
+  @if $delay > 0 {
+    transition-delay: $delay;
+  }
 }
 
 @mixin transitionMulti($duration: $defaultDuration, $timing: $defaultTiming, $property...) {

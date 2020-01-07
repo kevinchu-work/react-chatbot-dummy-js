@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import '../../sass/layout/_dialogWrapper.scss';
+import "../../sass/layout/_dialogWrapper.scss";
 
 export default class DialogWrapper extends React.Component {
 
-
-    render() {
-        return (
-            <>
-            </>
-        );
-    }
+  render() {
+    return (
+      <div id="root">
+        
+      </div>
+    );
+  }
 }

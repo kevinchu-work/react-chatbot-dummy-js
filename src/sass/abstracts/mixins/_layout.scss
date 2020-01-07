@@ -1,10 +1,10 @@
 @charset 'utf-8';
 
 // Flex layout
-@mixin flex($align-items: stretch, $justify-content: flex-start, $flex-direction: row, $wrap: nowrap, $inline: false) {
+@mixin flex($align-items: stretch, $justify-content: flex-start, $direction: row, $wrap: nowrap, $inline: false) {
   align-items: $align-items;
   display: if($inline, inline-flex, flex);
-  flex-direction: $flex-direction;
+  flex-direction: $direction;
   flex-wrap: $wrap;
   justify-content: $justify-content;
 }

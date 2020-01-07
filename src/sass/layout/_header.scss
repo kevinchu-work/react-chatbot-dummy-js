@@ -2,27 +2,67 @@
 
 @import '../main';
 
-Header {
+header {
   // Parms
   // $DEFAULT_LOGO_SIZE: 30px;
   // $MIN_HEIGHT: #{$BUTTON_MIN_SIZE + ($DEFAULT_PADDING_SIZE * 2)};
   $BAR_HEIGHT: 44px;
+  $PADDING: 8px;
 
-  @include flex($align-items: center);
-  @include dimen(100%, $BAR_HEIGHT);
-  border-bottom: 1px solid theme-color(grey08);
+  @include flex($align-items: center, $justify-content: space-between);
   flex: 0 0 $BAR_HEIGHT;
-  padding: 0 8px;
+  // @include dimen(100%, $BAR_HEIGHT);
+  width: 100%;
+  min-height: $BAR_HEIGHT;
+  border-bottom: 1px solid theme-color(grey08);
+  padding: 0 $PADDING;
   
+  .centerWrapper {
+    @include flex($align-items: center, $justify-content: center);
+    flex: 0 0 auto;
+  }
+  
+
+  .leftMenu,
+  .rightMenu {
+    // Sizing & Positioning
+    min-width: 10%;
+    max-width: 30%;
+    width: 350px;
+    @include position($top: 0, $bottom: 0);
+
+    // Content & Aligment
+    padding: 0 5px;
+    @include flex($justify-content: space-between, $direction: column);
+    background-color: #fff;
+
+    .headRow,
+    .footRow {
+      @include dimen(100%, $BAR_HEIGHT);
+      @include flex($align-items: center);
+    }
+
+  }
+
   .leftMenu {
-      @include fixed($top: 0, $bottom: 0, $left: -100%);
-      min-width: 10%;
-      max-width: 30%;
+    left: -100%;
+    @include transition($property: left, $duration: 1s);
+    box-shadow: 2px 0 4px rgba(0,0,0, 0.2);
+
+    &.active  { left: 0; }
+    .headRow  { justify-content: flex-end;    }
+    .footRow  { justify-content: flex-start;  }
+    .exitBtn  { transform: rotate(180deg);    }
   }
   
   .rightMenu {
-      @include fixed($top: 0, $bottom: 0, $right: 100%);
-      min-width: 10%;
-      max-width: 30%;
+    right: -100%;
+    @include transition($property: right, $duration: 1s);
+    box-shadow: -2px 0 4px rgba(0,0,0, 0.2);
+
+    &.active  { right: 0; }
+    .headRow  { justify-content: flex-start;  }
+    .footRow  { justify-content: flex-end;    }
   }
+  
 }

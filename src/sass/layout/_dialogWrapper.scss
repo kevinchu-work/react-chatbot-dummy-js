@@ -2,9 +2,13 @@
 
 @import '../main';
 
-DialogWrapper {
+main {
+    height: 100%;
+}
 
-    @include flex($flex-direction: column);
+#root {
+
+    @include flex($direction: column);
     flex: 0 0 auto;
     width: 100%;
 }
