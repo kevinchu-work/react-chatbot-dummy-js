@@ -37,6 +37,7 @@ input[type=button] {
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: transparent;
+    @extend %svg_green;
 
     &.exitBtn {
       background-image: url(../../images/icons/exit_to_app.svg);

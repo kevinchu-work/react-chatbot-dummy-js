@@ -13,3 +13,18 @@
 %borderRadius_light {
   border-radius: 2px;
 }
+
+
+// SVG related - https://codepen.io/sosuke/pen/Pjoqqp
+%svg_green {
+  // RGB #0d6c29
+  filter: invert(29%) sepia(85%) saturate(473%) hue-rotate(86deg) brightness(93%) contrast(95%);
+}
+%svg_green_dark {
+  // RGB #0b5b22
+  filter: invert(15%) sepia(85%) saturate(2208%) hue-rotate(129deg) brightness(96%) contrast(91%);
+}
+%svg_green_lighter {
+  // RGB #0e7c2f
+  filter: invert(17%) sepia(96%) saturate(5434%) hue-rotate(149deg) brightness(93%) contrast(89%);
+}
