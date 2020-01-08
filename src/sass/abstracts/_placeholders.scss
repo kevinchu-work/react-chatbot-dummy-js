@@ -28,3 +28,47 @@
   // RGB #0e7c2f
   filter: invert(17%) sepia(96%) saturate(5434%) hue-rotate(149deg) brightness(93%) contrast(89%);
 }
+%svg_white {
+  // #f8f8f8 - no loss
+  filter: invert(98%) sepia(4%) saturate(635%) hue-rotate(183deg) brightness(113%) contrast(95%);
+}
+%svg_white_hover {
+  // #fff - no loss
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(174deg) brightness(102%) contrast(102%);
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Browser default outline
+// 
+// Ref:
+// Firefox (Gecko)        : https://dxr.mozilla.org/mozilla-central/source/layout/style/res/html.css. Or, browse to resource://gre-resources/ and look at html.css.
+// Chrome/Safari (WebKit) : http://trac.webkit.org/browser/trunk/Source/WebCore/css/html.css
+//         Chrome (Blink) : https://chromium.googlesource.com/chromium/blink/+/master/Source/core/css/html.css
+// Internet Explorer (Trident), 
+//         older versions : http://web.archive.org/web/20170122223926/http://www.iecss.com/
+// 
+// Ref Part 2:
+// Default Styles for Firefox
+// https://dxr.mozilla.org/mozilla-central/source/layout/style/res/html.css
+
+// Default Styles for Internet Explorer
+// http://web.archive.org/web/20170122223926/http://www.iecss.com/
+
+// Default Styles for Chrome / Webkit
+// http://trac.webkit.org/browser/trunk/Source/WebCore/css/html.css
+
+// Default Styles for Opera
+// http://web.archive.org/web/20161031005401/http://www.iecss.com/opera-10.51.css
+
+// Default Styles for HTML4 (W3C spec)
+// http://www.w3.org/TR/CSS2/sample.html
+
+// Default Styles for HTML5 (W3C spec)
+// http://www.w3.org/TR/html5/rendering.html
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%default_focus_outline {  // Based on Webkit
+  // outline    : none;
+  // border     : 1px solid #4D90FE;
+  // box-shadow : 0px 0px 5px  #4D90FE;
+  outline: auto 5px #4D90FE;
+}
