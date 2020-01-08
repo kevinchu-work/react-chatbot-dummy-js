@@ -68,8 +68,8 @@ export class RetractableButton extends React.Component {
 
     return (
       <>
-      <input id={id} type="checkbox" className="retractableBtn" onChange={onClickEvent} checked={buttonChecked} />
-      <label htmlFor={id} className={`retractableBtn ${classList.join(' ').trim()}`}>
+      <input id={id} type="checkbox" className="retractableBtn" onChange={onClickEvent} checked={buttonChecked} tabIndex="-1" />
+      <label htmlFor={id} className={`retractableBtn ${classList.join(' ').trim()}`} tabIndex="1">
         {content}
       </label>
       </>

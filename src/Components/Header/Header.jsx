@@ -41,6 +41,20 @@ export default class Header extends React.Component {
   };
 
   render() {
+    
+    var left_sideMenu, right_sideMenu;
+
+    if (this.state.mobileMenu_left_Flag) {
+      left_sideMenu = <SideMenuFC 
+            classes="leftMenu active" 
+            onClickEvent={() => this.toggleMobileMenu('left')} />
+    }
+    if (this.state.mobileMenu_right_Flag) {
+      right_sideMenu = <SideMenuFC
+            classes="rightMenu active"
+            onClickEvent={() => this.toggleMobileMenu('right')} />
+    }
+
     return (
       <>
         <div className="leftWrapper">
@@ -56,12 +70,14 @@ export default class Header extends React.Component {
                               onClickEvent={() => this.toggleMobileMenu('right')} />
         </div>
 
-        <SideMenuFC 
+        {left_sideMenu}
+        {/* <SideMenuFC 
             classes={"leftMenu" + (this.state.mobileMenu_left_Flag ? ' active' : '')} 
-            onClickEvent={() => this.toggleMobileMenu('left')} />
-        <SideMenuFC
+            onClickEvent={() => this.toggleMobileMenu('left')} /> */}
+        {right_sideMenu}
+        {/* <SideMenuFC
             classes={"rightMenu" + (this.state.mobileMenu_right_Flag ? ' active' : '')}
-            onClickEvent={() => this.toggleMobileMenu('right')} />
+            onClickEvent={() => this.toggleMobileMenu('right')} /> */}
         {/* <div className="rightMenu"></div> */}
       </>
     );
