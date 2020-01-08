@@ -2,39 +2,58 @@
 
 @import '../main';
 
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Wrapper Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 header {
   // Parms
   // $DEFAULT_LOGO_SIZE: 30px;
   // $MIN_HEIGHT: #{$BUTTON_MIN_SIZE + ($DEFAULT_PADDING_SIZE * 2)};
-  $BAR_HEIGHT: 44px;
-  $PADDING: 8px;
+  $BAR_HEIGHT : 44px;
+  $PADDING    : 8px;
 
+  // Sizing & Positioning
   @include flex($align-items: center, $justify-content: space-between);
-  flex: 0 0 $BAR_HEIGHT;
-  // @include dimen(100%, $BAR_HEIGHT);
-  width: 100%;
-  min-height: $BAR_HEIGHT;
-  border-bottom: 1px solid theme-color(grey08);
-  padding: 0 $PADDING;
+  flex       : 0 0 $BAR_HEIGHT;
+  width      : 100%;
+  min-height : $BAR_HEIGHT;
+
+  // Content 
+  border-bottom : 1px solid theme-color(grey08);
+  padding       : 0 $PADDING;
   
+  // Coloring
+  // background-color : theme-color(dark-green);
+  background-color: theme-color(sparks-blue);
+  // or #0D64B8
+
   .centerWrapper {
     @include flex($align-items: center, $justify-content: center);
-    flex: 0 0 auto;
+    flex : 0 0 auto;
   }
   
+  $MENU_WIDTH: 350px;
 
   .leftMenu,
   .rightMenu {
-    // Sizing & Positioning
-    min-width: 10%;
-    max-width: 30%;
-    width: 350px;
+    // Positioning
     @include position($top: 0, $bottom: 0);
-
-    // Content & Aligment
-    padding: 0 5px;
     @include flex($justify-content: space-between, $direction: column);
+    // display: none;
+
+    // Sizing
+    min-width : 10%;
+    max-width : 30%;
+    width     : $MENU_WIDTH;
+    padding : 0 5px;
+
+    // Content & Color
     background-color: #fff;
+
+    // Effect
+    opacity: 0;
+    &.active { opacity: 1; }
 
     .headRow,
     .footRow {
@@ -45,8 +64,8 @@ header {
   }
 
   .leftMenu {
-    left: -100%;
-    @include transition($property: left, $duration: 1s);
+    left: -#{$MENU_WIDTH};
+    @include transition($duration: 1s);
     box-shadow: 2px 0 4px rgba(0,0,0, 0.2);
 
     &.active  { left: 0; }
@@ -56,8 +75,8 @@ header {
   }
   
   .rightMenu {
-    right: -100%;
-    @include transition($property: right, $duration: 1s);
+    right: -#{$MENU_WIDTH};
+    @include transition($duration: 1s);
     box-shadow: -2px 0 4px rgba(0,0,0, 0.2);
 
     &.active  { right: 0; }
@@ -65,4 +84,63 @@ header {
     .footRow  { justify-content: flex-end;    }
   }
   
+}
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Components Styles
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.retractableBtn {
+
+  // @at-root label#{&} {
+      // @include dimen($TOGGLE_BUTTON_WIDTH);
+      // color: theme-color(grey01);
+  // }
+
+  @at-root input[type=checkbox]#{&}:checked +
+  label#{&} {
+    span {
+      width: 30.8px; //24.5px;
+      &:first-child { transform: rotate(45deg) ; }
+      &:nth-child(2){ opacity: 0; }
+      &:last-child  { transform: rotate(-45deg); }
+    }
+  }
+}
+
+
+label.retractableBtn.menuBtn {
+
+  $TOGGLE_BUTTON_HEIGHT : ($DEFAULT_BUTTON_SIZE - 4px);
+  $TOGGLE_BUTTON_WIDTH  : $DEFAULT_BUTTON_SIZE;
+  
+  flex-direction : column;
+  // padding: 4px;
+  
+  @include dimen($TOGGLE_BUTTON_WIDTH, $TOGGLE_BUTTON_HEIGHT);
+
+  outline-offset: 2px;
+
+  span {
+    display          : block;
+    width            : 100%;
+    height           : 4px;
+    background-color : theme-color(black);    //theme-color(grey02);
+    border-radius    : 2px;
+    
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+    
+    @extend %svg_white;
+    @include tag(':hover') {
+      span {
+        @extend %svg_white_hover;
+      }
+    }
+  
+    &:first-child { transform-origin: 2.5px 6px; }
+    &:last-child  { transform-origin: 2.5px -1px; }
+  }
+
 }

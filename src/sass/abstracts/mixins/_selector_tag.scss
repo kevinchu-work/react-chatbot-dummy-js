@@ -1,0 +1,13 @@
+@mixin tag($tag) {
+  $ampersand: & + '';
+  $selectors: simple-selectors(str-replace($ampersand, ' ', ''));
+
+  $main-selector: nth($selectors, -1);
+  $previous-selectors: str-replace($ampersand, $main-selector, '');
+
+  @at-root {
+    #{$previous-selectors}#{$tag}#{$main-selector} {
+      @content;
+    }
+  }
+}
