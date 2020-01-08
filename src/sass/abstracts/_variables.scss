@@ -2,12 +2,12 @@
 
 
 // Resources Paths
-$FONT_PATH                : '/public/fonts'   !default;
-$IMAGES_PATH              : '/public/imgs'    !default;
+$FONT_PATH          : '/public/fonts'   !default;
+$IMAGES_PATH_PREFIX : '../../../images/'       !default;    // '/public/imgs'    !default;
 
 
 // Namespace
-$NS                       : '' !default;    // Please change to client short name
+$NS          : '' !default;    // Please change to client short name
 
 
 // Breakpoint

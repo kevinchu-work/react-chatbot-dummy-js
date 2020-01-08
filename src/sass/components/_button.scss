@@ -2,9 +2,9 @@
 // @use "sass:color";
 
 // Completely rewrite btn class
-$BUTTON_MIN_SIZE            : 20px  !default;
-$DEFAULT_BUTTON_SIZE        : 28px  !default;
-$WCAG_AAA_CLICKABLE_AREA    : 44px  !default;
+$BUTTON_MIN_SIZE         : 20px !default;
+$DEFAULT_BUTTON_SIZE     : 28px !default;
+$WCAG_AAA_CLICKABLE_AREA : 44px !default;
 
 
 // Default style, no matter what state
@@ -13,40 +13,37 @@ a.btn,
 input[type=button] {
 
   &, &:hover, &:active, &:visited {
-    padding: 5px 10px;
-    border: 1px solid transparent;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0;
+    padding       : 5px 10px;
+    border        : 1px solid transparent;
+    font-size     : 1rem;
+    line-height   : 1.5;
+    border-radius : 0;
 
     // Default size, please customization in theme/page
     @include dimen($DEFAULT_BUTTON_SIZE);
   }
 
   &.primaryBtn {
-    background-color: theme-color(btn-primary);
-    border-color: theme-color(btn-primary);
-    color: theme-color(btn-primary-text);
+    background-color : theme-color(btn-primary);
+    border-color     : theme-color(btn-primary);
+    color            : theme-color(btn-primary-text);
   }
 
   &.iconBtn {
     $size: 36px;
 
     @include dimen($size);
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    @extend %svg_green;
+    background-color : transparent;
+    border-width     : 0;
+    padding: 0;
 
     &.exitBtn {
-      background-image: url(../../images/icons/exit_to_app.svg);
-      background-size: 24px;
+      @include bg-image( $image: url(#{$IMAGES_PATH_PREFIX}icons/exit_to_app.svg), $size: 24px );
     }
 
     &.settingBtn {
-      background-image: url(../../images/icons/bytesize-settings.svg);
-      background-size: 24px;
+      @include bg-image( url(#{$IMAGES_PATH_PREFIX}icons/bytesize-settings.svg), $size: 24px );
+      @extend %svg_white;
     }
   }
 
@@ -54,8 +51,8 @@ input[type=button] {
     &.force_WCAG_AAA {
       $lacking: (($WCAG_AAA_CLICKABLE_AREA - $DEFAULT_BUTTON_SIZE) / 2);
       
-      padding: $lacking;
-      margin: -1 * $lacking;
+      padding : $lacking;
+      margin  : -1 * $lacking;
     }
   }
 
@@ -64,8 +61,8 @@ input[type=button] {
 .retractableBtn {
 
   @at-root input[type=checkbox]#{&} {
-      position: absolute;
-      z-index: -9;
+      position : absolute;
+      z-index  : -9;
   }
   @at-root label#{&} {
       @include flex($justify-content: space-between);

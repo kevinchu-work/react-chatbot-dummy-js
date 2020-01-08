@@ -7,18 +7,21 @@
  */
 @charset 'utf-8';
 
+// Default prefix of image path
+$DEFAULT_ROOT_PATH_PREFIX   :   '../../../';
+
 
 @mixin bg-reset() {
   background: none !important;
 }
 
-@mixin bg-image($image: null,
-                $color: null,
-                $position: center center,
-                $size: 100%,
-                $repeat: no-repeat,
-                $clip: null,
-                $bg-attach: null) {
+@mixin bg-image($image     : null,
+                $color     : null,
+                $position  : center center,
+                $size      : 100%,
+                $repeat    : no-repeat,
+                $clip      : null,
+                $bg-attach : null) {
 
   @if ($image) {
     // and (type-of($image) == list) and (length($list: $image) >= 1) {
@@ -69,12 +72,12 @@
 
 }
 
-@mixin bg-image-only( $type: null,
-                      $image: null,
-                      $content: null,
-                      $position: null,
-                      $size: null,
-                      $repeat: null) {
+@mixin bg-image-only( $type     : null,
+                      $image    : null,
+                      $content  : null,
+                      $position : null,
+                      $size     : null,
+                      $repeat   : null) {
 
   &:#{$type} {
     @include bg-image($image: $image,
@@ -89,23 +92,23 @@
 
 }
 
-@mixin bg-image-after($image: null,
-                      $color: null,
-                      $content: null,
-                      $position: center center,
-                      $size: 100%,
-                      $repeat: no-repeat) {
+@mixin bg-image-after($image    : null,
+                      $color    : null,
+                      $content  : null,
+                      $position : center center,
+                      $size     : 100%,
+                      $repeat   : no-repeat) {
 
   @include bg-image-only(after, $image, $position, $size, $repeat);
 
 }
 
-@mixin bg-image-before( $image: null,
-                        $color: null,
-                        $content: null,
-                        $position: center center,
-                        $size: 100%,
-                        $repeat: no-repeat) {
+@mixin bg-image-before( $image    : null,
+                        $color    : null,
+                        $content  : null,
+                        $position : center center,
+                        $size     : 100%,
+                        $repeat   : no-repeat) {
 
   @include bg-image-only(before, $image, $position, $size, $repeat);
   
