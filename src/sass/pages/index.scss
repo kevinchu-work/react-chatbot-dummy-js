@@ -16,12 +16,12 @@ body {
   $SPACING_GAP: 20px;
 
   // position: relative;
-  margin: $SPACING_GAP auto;
-  box-shadow: 0 2px 6px rgba(0,0,0, 0.3);
-  // overflow: hidden;
-  background-color: #fff;
-  max-width: 980px;
-  max-height: calc(100% - #{$SPACING_GAP * 2});
+  margin           : $SPACING_GAP auto;
+  box-shadow       : 0 2px 6px rgba(0,0,0, 0.3);
+  // overflow         : hidden;
+  background-color : #fff;
+  max-width        : 980px;
+  max-height       : calc(100% - #{$SPACING_GAP * 2});
 
   @include flex($direction: column);
 
@@ -38,4 +38,8 @@ body {
 
 * {
   box-sizing: border-box;
+
+  &:focus {
+    @extend %default_focus_outline;
+  }
 }
