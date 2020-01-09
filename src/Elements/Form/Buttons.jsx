@@ -3,7 +3,7 @@ import React from 'react';
 // import './Buttons.scss';
 
 const StandardButton = (props) => {
-  let { classList, onClickEvent, ...translatedProps } = props;
+  let { classList, onClick, ...translatedProps } = props;
 
   // console.log(classList);
     
@@ -16,7 +16,7 @@ const StandardButton = (props) => {
   // console.log(allClassSet, classListStr);
 
   return (
-    <button className={classListStr} onClick={onClickEvent} {...translatedProps}></button>
+    <button className={classListStr} onClick={onClick} {...translatedProps}></button>
   );
 }
 
@@ -24,7 +24,7 @@ const StandardButton = (props) => {
 export class IconButton extends React.Component {
 
   render() {
-    let { classList, predefinedButtonType, onClickEvent, ...translatedProps } = this.props;
+    let { classList, predefinedButtonType, onClick, ...translatedProps } = this.props;
     let parsered_classList = [...classList];
 
     if (predefinedButtonType) {
@@ -42,7 +42,7 @@ export class IconButton extends React.Component {
     }
 
     return (
-      <StandardButton classList={parsered_classList} onClickEvent={onClickEvent} {...translatedProps} />
+      <StandardButton classList={parsered_classList} onClick={onClick} {...translatedProps} />
     );
   };
 }
@@ -55,7 +55,7 @@ IconButton.defaultProps = {
 export class RetractableButton extends React.Component {
 
   render() {
-    let {id, classList, predefinedButtonType, content, onClickEvent, buttonChecked} = this.props;
+    let {id, classList, predefinedButtonType, content, onClick, buttonChecked} = this.props;
 
     if (predefinedButtonType) {
       predefinedButtonType = predefinedButtonType.toLowerCase().trim();
@@ -68,7 +68,7 @@ export class RetractableButton extends React.Component {
 
     return (
       <>
-      <input id={id} type="checkbox" className="retractableBtn" onChange={onClickEvent} checked={buttonChecked} tabIndex="-1" />
+      <input id={id} type="checkbox" className="retractableBtn" onChange={onClick} checked={buttonChecked} tabIndex="-1" />
       <label htmlFor={id} className={`retractableBtn ${classList.join(' ').trim()}`} tabIndex="1">
         {content}
       </label>
